@@ -1,6 +1,5 @@
 package com.jemin.assignment.Adapter
 
-import android.provider.Settings
 import android.support.v7.widget.RecyclerView
 import android.text.Html
 import android.view.LayoutInflater

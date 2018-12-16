@@ -2,7 +2,6 @@ package com.jemin.assignment.Activity
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -38,7 +37,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener  {
     override fun onClick(v: View) {
         var idx = main_movie_recyclerview!!.getChildAdapterPosition(v)
         selectedLink = movieListData[idx].link!!
-        var intent = Intent(Intent.ACTION_VIEW, Uri.parse(selectedLink))
+        var intent = Intent(applicationContext, WebViewActivity::class.java)
+        intent.putExtra("link", selectedLink)
         startActivity(intent)
     }
 
@@ -86,13 +86,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener  {
                         }
                     }
                 }
-
                 override fun onFailure(call: Call<GetMovieListResponse>?, t: Throwable?) {
                     Log.v("TAG","영화 검색 서버 통신 실패" + t.toString())
                 }
             })
         } catch (e: Exception) {
         }
-
     }
 }
